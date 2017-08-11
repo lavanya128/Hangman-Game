@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hangman-Game</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<!-- <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    Brand and toggle get grouped for better mobile display
+    <div class="navbar-header">
+ <a class="navbar-brand"><h1>Hangman</h1></a>
+    </div>
+</div>
+</nav> -->
+<div class="jumbotron">
+  <h1>Hangman</h1>
+  </div>
+
+<div id="main-container" class="container">
+ <div class="row">
+ <div class="col-md-5">
+    <section class="main-section">
+      <img src="assets/images/Lavanya_Profile.JPG" class="auth-image" alt="Your Name">
+      <p> </p>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </section>
+</div>
+<div class="col-md-6">
+    <section class="sidebar">
+      <div id="connect">
+       <div class="fontDisplay">PRESS ANY KEY TO GET STARTED!</div>
+       </br>
+       <div class="fontDisplay">WIN</div>
+       </br>
+       <div id="win" class="fontDisplay"></div>
+       </br>
+       <div class="fontDisplay"> CURRENT WORD </div>
+       </br>
+       <div id="computerChoice"  class="fontDisplay"></div>
+       </br>
+       <div class="fontDisplay"> NUMBER OF GUESSES REMAINING </div>
+</br>
+        <div id="guess" class="fontDisplay"></div>
+        </br>
+        <div class="fontDisplay"> LETTERS ALREADY GUESSED </div>
+        </br>
+        <div id="lettersGuessed" class="fontDisplay"></div>
+        </br>
+      </div>
+    </section>
+    </div>
+  </div>
+</div>
+
+ <script
+  src="http://code.jquery.com./jquery-3.2.1.min.js"
+  ></script>
+	<script>
+		
+
+var nOfGuesses=13;
+var win=0;
+var computerChoice;
+var cChoiceLength;
+var userGuess;
+var searchChar;
+var placeHolder=[];
+var words = [
+  'Hello',
+  'No',
+  'Hi',
+  'Banana', 
+  'Apple',
+  'Sweet',
+  'Grapes',
+  'Orange'
+];
+
+function randomWord(words) {
+	computerChoice=(words[Math.floor(Math.random() * words.length)]);
+	return(computerChoice=computerChoice.toLowerCase());
+}
+//displaying --- for corresponding word length.
+
+for (var x = 0; x < 1; x++)
+{
+	console.log("Computer choice:" + randomWord(words));
+  //document.write(randomWord(words));
+}
+cChoiceLength="-";
+console.log(cChoiceLength.repeat(computerChoice.length));
+for(var i=0; i<computerChoice.length;i++)
+{
+  placeHolder.push(cChoiceLength);
+}
+console.log(placeHolder);
+$("#computerChoice").append(placeHolder);
+
+document.onkeyup = function(event) 
+{
+userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+var prevGuess=[];
+console.log(prevGuess);
+console.log(userGuess);
+if(userGuess!=prevGuess)
+{
+prevGuess.push(userGuess);
+console.log(prevGuess);
+$("#lettersGuessed").append(prevGuess);
+}
+else
+{
+  nOfGuesses;
+}
+
+console.log(userGuess);
+searchChar=computerChoice.search(userGuess);
+console.log(searchChar);
+
+    if(searchChar!=-1)
+    {
+   for (var i = 0; i < computerChoice.length; i++) 
+   {
+
+          if (userGuess === computerChoice[i])
+           {
+            placeHolder[i] = userGuess;
+            
+          }
+        }
+         nOfGuesses--;
+         $("#guess").empty();
+          $("#guess").append(nOfGuesses);
+          //console.log(prevGuess);
+          //$("#lettersGuessed").append(prevGuess);
+          //console.log(strCat);
+          console.log(placeHolder);
+          $("#computerChoice").empty();
+          $("#computerChoice").append(placeHolder);
+console.log(nOfGuesses);
+
+}
+else if(searchChar === -1)
+{
+
+  nOfGuesses--;
+  console.log(nOfGuesses);
+  $("#guess").empty();
+  $("#guess").append(nOfGuesses);
+}
+var strCat= placeHolder.join("");
+console.log(strCat);
+console.log(cChoiceLength);
+if(strCat.includes("-"))
+{
+  console.log(win);
+}
+else{
+   win++;
+   console.log(win);
+   $("#win").empty();
+   $("#win").append(win);
+   randomWord(words);
+   
+ }
+  
+}
+
+
+	</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <!-- Bootstrap JavaScript CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
