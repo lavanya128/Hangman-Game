@@ -5,40 +5,28 @@
 	<title>Hangman-Game</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
    <link rel="stylesheet" href="assets/css/style.css">
+   <!-- <script src="assets/javascript/game.js"></script> -->
 </head>
 <body>
-<!-- <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    Brand and toggle get grouped for better mobile display
-    <div class="navbar-header">
- <a class="navbar-brand"><h1>Hangman</h1></a>
-    </div>
-</div>
-</nav> -->
 <div class="jumbotron">
   <h1>Hangman</h1>
   </div>
-
+<audio id="audio"></audio>
 <div id="main-container" class="container">
- <div class="row">
- <div class="col-md-5">
+<div class="fontDisplay" id="word1"> THE WORD IS :<div id="word" class="fontDisplay"></div></div>
+
+ <div class="row row-eq-height">
+ <div class="col-md-6">
     <section class="main-section">
-      <img src="assets/images/Lavanya_Profile.JPG" class="auth-image" alt="Your Name">
+      <img src="assets/images/cat.JPG" class="auth-image" alt="Your Name">
       <p> </p>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+      
     </section>
 </div>
 <div class="col-md-6">
     <section class="sidebar">
       <div id="connect">
-       <div class="fontDisplay">PRESS ANY KEY TO GET STARTED!</div>
-       </br>
-       <div class="fontDisplay">WIN</div>
+      <div class="fontDisplay">WIN</div>
        </br>
        <div id="win" class="fontDisplay"></div>
        </br>
@@ -64,8 +52,10 @@
   src="http://code.jquery.com./jquery-3.2.1.min.js"
   ></script>
 	<script>
-		
-
+	
+   $(document).ready(function()
+   {	
+    var prevGuess=[];
 var nOfGuesses=13;
 var win=0;
 var computerChoice;
@@ -83,44 +73,68 @@ var words = [
   'Grapes',
   'Orange'
 ];
-
+ randomWord(words);
 function randomWord(words) {
 	computerChoice=(words[Math.floor(Math.random() * words.length)]);
-	return(computerChoice=computerChoice.toLowerCase());
-}
-//displaying --- for corresponding word length.
-
-for (var x = 0; x < 1; x++)
-{
-	console.log("Computer choice:" + randomWord(words));
-  //document.write(randomWord(words));
-}
+	computerChoice=computerChoice.toLowerCase();
+//   for (var x = 0; x < 1; x++)
+// {
+//   console.log("Computer choice:" + randomWord(words));
+//   //document.write(randomWord(words));
+// }
+console.log(computerChoice);
+cChoiceLength="";
 cChoiceLength="-";
 console.log(cChoiceLength.repeat(computerChoice.length));
+placeHolder=[];
 for(var i=0; i<computerChoice.length;i++)
 {
   placeHolder.push(cChoiceLength);
 }
-console.log(placeHolder);
+console.log(placeHolder.length);
 $("#computerChoice").append(placeHolder);
+return(computerChoice=computerChoice.toLowerCase());
+};
+//displaying --- for corresponding word length.
+
+
 
 document.onkeyup = function(event) 
 {
+
 userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-var prevGuess=[];
-console.log(prevGuess);
 console.log(userGuess);
+prevGuess=[];
 if(userGuess!=prevGuess)
 {
 prevGuess.push(userGuess);
 console.log(prevGuess);
 $("#lettersGuessed").append(prevGuess);
 }
-else
+else if(userGuess === prevGuess)
 {
   nOfGuesses;
 }
 
+//not displaying duplicates
+// var strDup= prevGuess.join("");
+// console.log(strDup);
+// console.log(cChoiceLength);
+// if(strDup.includes(userGuess))
+// {
+//   nOfGuesses;
+
+// }
+// else{
+//    win;
+//    console.log(win);
+//    $("#win").empty();
+//    $("#win").append(win);
+//    randomWord(words);
+   
+//  }
+var audio = new Audio('assets/audio/applause-8.mp3');
+var audio1 = new Audio('assets/audio/fail-trombone-03.mp3');
 console.log(userGuess);
 searchChar=computerChoice.search(userGuess);
 console.log(searchChar);
@@ -151,10 +165,11 @@ console.log(nOfGuesses);
 else if(searchChar === -1)
 {
 
-  nOfGuesses--;
+  nOfGuesses;
   console.log(nOfGuesses);
   $("#guess").empty();
   $("#guess").append(nOfGuesses);
+  $("#audio").append(audio1.play());
 }
 var strCat= placeHolder.join("");
 console.log(strCat);
@@ -168,12 +183,34 @@ else{
    console.log(win);
    $("#win").empty();
    $("#win").append(win);
+   $("#word").empty();
+   $("#word").append(strCat);
+   $("#audio").append(audio.play());
+   reset(win);
    randomWord(words);
-   
- }
-  
 }
+    };
+  
+function reset(win){
+if(win  >= 1)
+{
+  //window.location.reload(true);
+  $("#guess").empty();
+  //$("#word").empty();
+  $("#computerChoice").empty();
+$("#lettersGuessed").empty();
+  nOfGuesses=13;
+   $("#guess").append(nOfGuesses);
+   computerChoice;
+ cChoiceLength;
+ userGuess;
+ searchChar;
+placeHolder=[];
+randomWord(words);
+}
+};
 
+});
 
 	</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
