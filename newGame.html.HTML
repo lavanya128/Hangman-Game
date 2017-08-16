@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hangman-Game</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   <link rel="stylesheet" href="assets/css/style.css">
+ <script
+  src="http://code.jquery.com./jquery-3.2.1.min.js"></script>
+</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <!-- Bootstrap JavaScript CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/javascript/newgame.js"></script>
+</head>
+<body>
+<div class="jumbotron">
+  <h1>Hangman</h1>
+  </div>
+<audio id="audio"></audio>
+<div id="main-container" class="container">
+<div class="fontDisplay" id="word1"> THE WORD IS :<div id="word" class="fontDisplay"></div></div>
+
+ <div class="row row-eq-height">
+ <div class="col-md-6">
+    <section class="main-section">
+      <img src="cat.JPG" class="auth-image" alt="Your Name">
+      <p> </p>
+      
+    </section>
+</div>
+<div class="col-md-6">
+    <section class="sidebar">
+      <div id="connect">
+      <div class="fontDisplay">WIN</div>
+       </br>
+       <div id="win" class="fontDisplay"></div>
+       </br>
+       <div class="fontDisplay"> CURRENT WORD </div>
+       </br>
+       <div id="computerChoice"  class="fontDisplay"></div>
+       </br>
+       <div class="fontDisplay"> NUMBER OF GUESSES REMAINING </div>
+</br>
+        <div id="guess" class="fontDisplay"></div>
+        </br>
+        <div class="fontDisplay"> LETTERS ALREADY GUESSED </div>
+        </br>
+        <div id="lettersGuessed" class="fontDisplay"></div>
+        </br>
+      </div>
+    </section>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
